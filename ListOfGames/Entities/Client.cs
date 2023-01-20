@@ -7,7 +7,7 @@ namespace ListOfGames.Entities
     {
         public string ClientsName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Adress { get; set; }
+        public string Country { get; set; }
 
         public List<Invoice> Purchasing { get; set; } = new List<Invoice>();
 
@@ -17,7 +17,7 @@ namespace ListOfGames.Entities
         {
             ClientsName = clientsName;
             DateOfBirth = dateOfBirth;
-            Adress = adress;
+            Country = adress;
         }
 
         public void AddPurchasing(Invoice invoice)
