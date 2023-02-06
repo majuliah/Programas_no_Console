@@ -1,8 +1,7 @@
 ﻿using System;
+using static System.Console;
 using System.Globalization;
 using System.Threading;
-using static System.Console;
-using System.Threading.Tasks;
 using ListOfGames.Entities;
 using ListOfGames.Entities.Enums;
 
