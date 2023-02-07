@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
         public string ID { get; set; }
-        public double Salary { get; set; }
+        private double Salary { get; set; }
         
         public Employee(){}
 
@@ -17,7 +17,7 @@
 
         public void IncreaseSalary(double porcentage)
         {
-            Salary = (Salary * porcentage) + Salary;
+            Salary = (Salary * (porcentage / 100)) + Salary;
         }
         
         public override string ToString()

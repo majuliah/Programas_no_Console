@@ -54,6 +54,50 @@ namespace SalaryIncrease
                 WriteLine($"{person}\n");
             }
             
+            // employees registered 
+            //checar se a id existe
+
+            bool yes = true;
+            bool found = true;
+            do
+            {
+                WriteLine($"Now, increase someones salary. Enter the Id:");
+                string id = ReadLine();
+                
+                foreach (Employee person in DataEmployees)
+                {
+                    if (person.ID == id)
+                    {
+                        found = true;
+                        WriteLine($"....");
+                        WriteLine($"I found! How much do you want to increase {person.Name}'s salary?");
+                        double increase = double.Parse(ReadLine());
+                        person.IncreaseSalary(increase);
+                    }
+                    else
+                    {
+                        found = false;
+                        WriteLine($"Hm.. Didn't found anyone here...Do you want to try again? [Y - Yes] / [N - No]");
+                        char answer = char.Parse(ReadLine());
+                        
+                        if (answer == 'N')
+                            yes = false;
+                    }
+                }
+
+                if (found)
+                {
+                    
+                }
+                
+            } while (yes == true);
+            
+            WriteLine($"Okay, the list now is this one:");
+            foreach (Employee person in DataEmployees)
+            {
+                WriteLine($"{person}\n");
+            }
+            WriteLine($"Bye!");
         }
     }
 }
