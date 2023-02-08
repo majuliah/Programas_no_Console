@@ -1,4 +1,6 @@
-﻿namespace SalaryIncrease
+﻿using System.Globalization;
+
+namespace SalaryIncrease
 {
     public class Employee
     {
@@ -17,12 +19,12 @@
 
         public void IncreaseSalary(double porcentage)
         {
-            Salary = (Salary * (porcentage / 100)) + Salary;
+            Salary += (Salary * (porcentage / 100));
         }
         
         public override string ToString()
         {
-            return ($"ID: {ID}, Name: {Name}, Salary: U${Salary} ");
+            return ($"ID: {ID}, Name: {Name}, Salary: U${Salary.ToString($"F2", CultureInfo.InvariantCulture)} ");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SalaryIncrease
             WriteLine($"-------------------------\n");
             
             WriteLine($"Nice! Will be {numberOfEmployees} employees :)");
-            WriteLine($"Now, you will type the ID, Name and Salary from each employee. Id doesnt repeat. ");
+            WriteLine($"Now, you will type the ID, Name and Salary from each employee. Id doesn't repeat. ");
 
             List<Employee> DataEmployees = new List<Employee>();
 
@@ -35,7 +35,6 @@ namespace SalaryIncrease
                         {
                             WriteLine($"Ids cant be the same! Enter with a valid one");
                             id = ReadLine();
-
                         } while (person.ID == id);
                     }
                 }
@@ -48,56 +47,39 @@ namespace SalaryIncrease
                 DataEmployees.Add(employee);
             }
 
-            WriteLine($"Nice! Now Ill list everyone:");
+            WriteLine($"Nice! Now I'll list everyone:");
             foreach (Employee person in DataEmployees)
             {
                 WriteLine($"{person}\n");
             }
             
             // employees registered 
-            //checar se a id existe
-
-            bool yes = true;
-            bool found = true;
+            //check id exists
+            bool answer = true;
             do
             {
-                WriteLine($"Now, increase someones salary. Enter the Id:");
-                string id = ReadLine();
-                
-                foreach (Employee person in DataEmployees)
-                {
-                    if (person.ID == id)
-                    {
-                        found = true;
-                        WriteLine($"....");
-                        WriteLine($"I found! How much do you want to increase {person.Name}'s salary?");
-                        double increase = double.Parse(ReadLine());
-                        person.IncreaseSalary(increase);
-                    }
-                    else
-                    {
-                        found = false;
-                        WriteLine($"Hm.. Didn't found anyone here...Do you want to try again? [Y - Yes] / [N - No]");
-                        char answer = char.Parse(ReadLine());
-                        
-                        if (answer == 'N')
-                            yes = false;
-                    }
-                }
+                WriteLine($"Now, enter an employee's Id to increase salary");
+                string idForIncrease = ReadLine();
 
-                if (found)
-                {
-                    
-                }
-                
-            } while (yes == true);
-            
-            WriteLine($"Okay, the list now is this one:");
-            foreach (Employee person in DataEmployees)
+                Employee employeeSalaryIncrease = DataEmployees.Find(person => person.ID == idForIncrease);
+
+            if (employeeSalaryIncrease != null)
             {
-                WriteLine($"{person}\n");
+                WriteLine($"I found! Now type the porcentage: ");
+                double porcentege = double.Parse(ReadLine(), CultureInfo.InvariantCulture);
+                employeeSalaryIncrease.IncreaseSalary(porcentege);
             }
-            WriteLine($"Bye!");
+            else
+            {
+                WriteLine($"Hmm.. Didnt find anyone here.. Wanna try again?");
+                WriteLine($"Yes - 1  / No - 0");
+                char yesOrno = char.Parse(ReadLine());
+                
+                if (yesOrno == '0')
+                    answer = false;
+                
+            }
+            } while (answer);
         }
     }
 }
